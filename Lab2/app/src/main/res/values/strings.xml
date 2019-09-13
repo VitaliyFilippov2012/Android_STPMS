@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Lab2</string>
+    <string name="app_name">Lab №2</string>
+    <string name="butt_signin">Sign In</string>
+    <string name="butt_signup">Sign Up</string>
+    <string name="butt_entry">Entry</string>
+    <string name="butt_next">Next</string>
+    <string name="butt_prev">Prev</string>
+    <string name="radio_student">Student</string>
+    <string name="radio_listener">Listener</string>
+    <string name="radio_manager">Manager</string>
+    <string name="date_birthday">Birthday</string>
+
+
 </resources>
