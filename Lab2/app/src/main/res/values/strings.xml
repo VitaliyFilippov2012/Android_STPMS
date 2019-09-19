@@ -9,6 +9,13 @@
     <string name="radio_listener">Listener</string>
     <string name="radio_manager">Manager</string>
     <string name="date_birthday">Birthday</string>
+    <string name="text_addr">Address</string>
+    <string name="butt_save">Save</string>
+    <string name="text_name">Name</string>
+    <string name="text_surname">Surname</string>
+    <string name="text_role">Role</string>
+    <string name="text_age">Age</string>
+    <string name="text_manager">Manager</string>
 
 
 </resources>
