@@ -27,35 +27,18 @@ public class reg_role extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_role);
+        Log.d("reg_role", "1");
         mSettings = getSharedPreferences("param", Context.MODE_PRIVATE);
-        
         getStateFromSharePreferences();
-        RadioButton radioButton;
-        if(role.equalsIgnoreCase("manager")) {
-            radioButton = findViewById(R.id.radioButton3);
-        }
-        else{
-            if(role.equalsIgnoreCase("student")){
-                radioButton = findViewById(R.id.radioButton1);
-            }
-            else{
-                radioButton = findViewById(R.id.radioButton2);
-            }
-        }
-        Log.d("reg_role",role);
-        radioButton.setChecked(true);
     }
 
     public void onClickNext(View view){
         Intent intent = new Intent(this, reg_name.class);
         RadioGroup radioGroup = findViewById(R.id.radio_group_role);
         RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
-        String role = radioButton.getText().toString();
-        if(role != null){
-            intent.putExtra("role",role);
-            startActivity(intent);
-        }
-
+        role = radioButton.getText().toString();
+        intent.putExtra("role",role);
+        startActivity(intent);
     }
 
     public void onClickPrev(View view){
@@ -104,13 +87,28 @@ public class reg_role extends AppCompatActivity {
 
     private void saveStateInSharePreferences(){
         SharedPreferences.Editor editor = mSettings.edit();
+        RadioGroup radioGroup = findViewById(R.id.radio_group_role);
+        RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
+        role = radioButton.getText().toString();
         editor.putString("role",role);
         editor.apply();
     }
 
-    private void getStateFromSharePreferences(){
-        if(mSettings.contains("role")) {
+    private void getStateFromSharePreferences() {
+        if (mSettings.contains("role")) {
             role = mSettings.getString("role", "");
+            RadioButton radioButton;
+            if (role.equalsIgnoreCase("manager")) {
+                radioButton = findViewById(R.id.radioButton3);
+            } else {
+                if (role.equalsIgnoreCase("student")) {
+                    radioButton = findViewById(R.id.radioButton1);
+                } else {
+                    radioButton = findViewById(R.id.radioButton2);
+                }
+            }
+            radioButton.setChecked(true);
         }
     }
+
 }

@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import filippovvitaliyleonidovich.bstu.fit.lab2.MainActivity;
 import filippovvitaliyleonidovich.bstu.fit.lab2.R;
 
 public class studentInfo extends AppCompatActivity {
@@ -52,6 +53,7 @@ public class studentInfo extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        // do nothing
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

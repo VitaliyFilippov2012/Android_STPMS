@@ -32,18 +32,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_birthday" />
 
-    <EditText
+    <TextView
         android:id="@+id/prev_info"
         android:layout_width="350dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
         android:enabled="false"
-        android:inputType="text"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/edit_addr"
@@ -58,10 +56,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prev_info" />
 
-    <CalendarView
+    <DatePicker
         android:id="@+id/edit_birthday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="351dp"
+        android:layout_height="395dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"

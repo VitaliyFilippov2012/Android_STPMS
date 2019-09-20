@@ -8,8 +8,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import filippovvitaliyleonidovich.bstu.fit.lab2.R;
 import filippovvitaliyleonidovich.bstu.fit.lab2.WorkWithFile;
 import filippovvitaliyleonidovich.bstu.fit.lab2.managerpage.ManagerMainInfo;
@@ -20,28 +22,23 @@ public class reg_anotherinformation extends AppCompatActivity {
     String name;
     String surname;
     String birthday;
-    String longBirthday;
     String addr;
-    CalendarView mCalendarView;
+    DatePicker datePicker;
     SharedPreferences mSettings;
-
+    boolean flag_save;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_anotherinformation);
+        flag_save = true;
         mSettings = getSharedPreferences("param", Context.MODE_PRIVATE);
         getStateFromSharePreferences();
-        mCalendarView = (CalendarView)findViewById(R.id.edit_birthday);
-        longBirthday = String.valueOf(mCalendarView.getDate());
-        mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year,int month, int dayOfMonth) {birthday = String.valueOf(dayOfMonth)+"."+String.valueOf(month)+"."+String.valueOf(year); }});
         Intent intent = getIntent();
         role = intent.getStringExtra("role");
         name = intent.getStringExtra("name");
         surname = intent.getStringExtra("surname");
-        EditText ed_role = (EditText)findViewById(R.id.prev_info);
-        ed_role.setText("Role: "+role +"\n"+"Name and surname: " + name + " " + surname);
+        TextView text = findViewById(R.id.prev_info);
+        text.setText("Role: "+role +"\n"+"Name and surname: " + name + " " + surname);
         Log.d("reg_org", "create called");
     }
 
@@ -53,6 +50,8 @@ public class reg_anotherinformation extends AppCompatActivity {
         else{
             intent = new Intent(this, studentInfo.class);
         }
+        datePicker = (DatePicker) findViewById(R.id.edit_birthday);
+        birthday = datePicker.getDayOfMonth()+"."+datePicker.getMonth()+"."+datePicker.getYear();
         intent.putExtra("role",role);
         intent.putExtra("name", name);
         intent.putExtra("surname", surname);
@@ -63,10 +62,14 @@ public class reg_anotherinformation extends AppCompatActivity {
             intent.putExtra("birthday", birthday);
             startActivity(intent);
         }
-        SharedPreferences.Editor  editor = mSettings.edit();
+        deleteEbuchiFile();
+        flag_save = false;
+    }
+
+    private void deleteEbuchiFile(){
+        SharedPreferences.Editor editor = mSettings.edit();
         editor.clear();
         editor.apply();
-        WorkWithFile.deleteFile("/data/data/.../shared_prefs/param.xml");
     }
 
     private boolean saveInfoJSON(){
@@ -118,14 +121,16 @@ public class reg_anotherinformation extends AppCompatActivity {
     }
 
     private void saveStateInSharePreferences(){
-        SharedPreferences.Editor editor = mSettings.edit();
-        editor.putString("role",role);
-        editor.putString("name",name);
-        editor.putString("surname",surname);
-        editor.putString("birthday",birthday);
-        editor.putString("lbirthday",longBirthday);
-        editor.putString("addr",addr);
-        editor.apply();
+        if(flag_save) {
+            datePicker = (DatePicker) findViewById(R.id.edit_birthday);
+            birthday = datePicker.getDayOfMonth()+"."+datePicker.getMonth()+"."+datePicker.getYear();
+            EditText ed_addr = findViewById(R.id.edit_addr);
+            addr = ed_addr.getText().toString();
+            SharedPreferences.Editor editor = mSettings.edit();
+            editor.putString("birthday", birthday);
+            editor.putString("addr", addr);
+            editor.apply();
+        }
     }
 
     private void getStateFromSharePreferences(){
@@ -135,12 +140,13 @@ public class reg_anotherinformation extends AppCompatActivity {
             ed_addr.setText(addr);
         }
         if(mSettings.contains("birthday")) {
-            birthday = mSettings.getString("lbirthday", "");
-        }
-        if(mSettings.contains("lbirthday")) {
-            longBirthday = mSettings.getString("lbirthday", "");
-            CalendarView calendarView = findViewById(R.id.edit_birthday);
-            calendarView.setDate(Long.valueOf(longBirthday));
+            birthday = mSettings.getString("birthday", "");
+            datePicker = (DatePicker) findViewById(R.id.edit_birthday);
+            String[] parts = birthday.split("[.]");
+            int year =Integer.valueOf(parts[2]) ;
+            int month = Integer.valueOf(parts[1]);
+            int day = Integer.valueOf(parts[0]);
+            datePicker.updateDate(year+1-1,month-1+1,day+1-1);
         }
         if(mSettings.contains("role")) {
             role = mSettings.getString("role", "");

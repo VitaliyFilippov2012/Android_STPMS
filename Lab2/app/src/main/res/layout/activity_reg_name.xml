@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".registration.reg_name">
 
-    <EditText
+    <TextView
         android:id="@+id/prev_info"
         android:layout_width="350dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:enabled="false"
-        android:inputType="text"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +39,7 @@
         android:autofillHints="true"
         android:ems="10"
         android:hint="@string/text_surname"
-        android:inputType="textPersonName"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prev_info" />

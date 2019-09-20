@@ -8,12 +8,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import filippovvitaliyleonidovich.bstu.fit.lab2.Entry;
 import filippovvitaliyleonidovich.bstu.fit.lab2.R;
-import filippovvitaliyleonidovich.bstu.fit.lab2.studentpage.studentInfo;
 
 public class reg_name extends AppCompatActivity {
 
@@ -28,11 +26,10 @@ public class reg_name extends AppCompatActivity {
         setContentView(R.layout.activity_reg_name);
         mSettings = getSharedPreferences("param", Context.MODE_PRIVATE);
         getStateFromSharePreferences();
-        Log.d("reg_name", "create called");
         Intent intent = getIntent();
         role = intent.getStringExtra("role");
-        EditText ed_role = (EditText)findViewById(R.id.prev_info);
-        ed_role.setText("Role: "+role);
+        TextView textView = findViewById(R.id.prev_info);
+        textView.setText("Role: "+role);
     }
 
     public void onClickSignIn(View view){
@@ -40,8 +37,8 @@ public class reg_name extends AppCompatActivity {
         intent.putExtra("role",role);
         EditText ed_name = (EditText) findViewById(R.id.editText_name);
         EditText ed_surname = (EditText) findViewById(R.id.editText_surname);
-        String surname = ed_surname.getText().toString();
-        String name = ed_name.getText().toString();
+        surname = ed_surname.getText().toString();
+        name = ed_name.getText().toString();
         if(!name.isEmpty() && !surname.isEmpty()) {
             intent.putExtra("name", name);
             intent.putExtra("surname", surname);
@@ -57,7 +54,6 @@ public class reg_name extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         Log.d("reg_name", "savestate called");
-
     }
 
     @Override
@@ -95,9 +91,13 @@ public class reg_name extends AppCompatActivity {
     }
     private void saveStateInSharePreferences(){
         SharedPreferences.Editor editor = mSettings.edit();
-        editor.putString("role",role);
+        EditText ed_name = (EditText) findViewById(R.id.editText_name);
+        EditText ed_surname = (EditText) findViewById(R.id.editText_surname);
+        surname = ed_surname.getText().toString();
+        name = ed_name.getText().toString();
         editor.putString("name",name);
         editor.putString("surname",surname);
+        editor.apply();
     }
 
     private void getStateFromSharePreferences(){
@@ -115,4 +115,5 @@ public class reg_name extends AppCompatActivity {
             ed.setText(surname);
         }
     }
+
 }
