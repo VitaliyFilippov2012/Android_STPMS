@@ -1,26 +1,55 @@
 package filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units;
 
-import java.util.List;
+import android.os.Build;
 
-public class Student extends Person{
-    private List<Integer> marks;
-    public Student(final String firstName, final String lastName, final int age) {
-        setFirstName(firstName);
-        setLastName(lastName);
-        setAge(age);
-    }
-    public void joinCourse(final int cursId) {
-        setCursId(cursId);
-    }
-    public void leftCourse(final int cursId) {
-        getCursId().removeIf(id -> id.equals(cursId));
-    }
+import androidx.annotation.RequiresApi;
 
-    public List<Integer> getMarks() {
-        return marks;
+
+import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.organization.Organization;
+
+public class Student extends Person implements ISerializable {
+    private int mark;
+    Organization organization;
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public Student( String name, String surname, int age, int year, int mark,String org) {
+        super(name, surname, age, year,org);
+        this.mark = mark;
     }
 
-    public void setMark(final int mark) {
-        this.marks.add(mark);
+    public Student() {
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public Student(String name, String surname, int age, int mark,String org) {
+        super(name, surname, age,org);
+        this.mark = mark;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "mark=" + mark +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    @Override
+    public boolean saveInfo() {
+        return  true;
+    }
+
+    @Override
+    public Person loadInfo() {
+        return null;
     }
 }

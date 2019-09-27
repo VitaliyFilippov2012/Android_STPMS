@@ -1,51 +1,87 @@
 package filippovvitaliyleonidovich.bstu.fit.lab2;
-
-import android.util.Log;
-import android.widget.Toast;
-
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class WorkWithFile {
+    File file;
+    public WorkWithFile(String fileName) {
+        this.file = new File(fileName);
+    }
 
-    public boolean writeToFile(String text,String fileName,File file){
-        File f = new File(file + fileName);
-
-        try{
-            FileWriter w = new FileWriter(f,true);
-            w.write(text);
-            w.close();
+    public boolean createFile() {
+        try {
+            file.createNewFile();
         }
-        catch(IOException e){
-            Log.d("io_write",e.getMessage());
+        catch (IOException e) {
             return false;
         }
         return true;
     }
 
-    public String readFile(String fileName,File file) {
-        File f =new File(file+fileName);
+    public boolean deleteFile() {
+        file.delete();
+        return !checkFile();
+    }
+
+    public boolean checkFile(){
+        if(file.exists()) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean writeFile(String text) {
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+            fileWriter.write(text);
+            fileWriter.close();
+        }
+        catch(IOException e){
+            return false;
+        }
+        return true;
+    }
+
+    public String readFile() {
         StringBuilder builder;
         try{
-            FileReader fileReader = new FileReader(f);
-            char[] nw=new char[10000];
+            FileReader fileReader = new FileReader(file);
+            FileInputStream fi = new FileInputStream(file);
+            char[] nw =new char[fi.available()];
             fileReader.read(nw);
             builder = new StringBuilder();
             for (int i = 0; i < nw.length; ++i) {
                 builder.append(nw[i]);
             }
+
             fileReader.close();
         }
-        catch(IOException e){
-            Log.d("io_write",e.getMessage());
-            return "";
+        catch (Exception e) {
+            return "Error";
         }
         return builder.toString();
     }
-    public static void deleteFile(String fileName){
-        File f = new File(fileName);
-        f.delete();
+
+    public boolean isExistsString(String text){
+        return readFile().contains(text);
+    }
+
+    public String getStringAbout(String partText){
+        String textFromFile = readFile();
+        if(!textFromFile.contains(partText)){
+            return "";
+        }
+        String[] arrayStringFile =  textFromFile.split("\n\r");
+        for (String str: arrayStringFile) {
+            if(str.contains(partText)){
+                return str;
+            }
+        }
+        return "";
     }
 }

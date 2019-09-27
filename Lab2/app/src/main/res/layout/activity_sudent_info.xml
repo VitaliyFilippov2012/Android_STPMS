@@ -102,6 +102,7 @@
                     tools:layout_editor_absoluteY="20dp"
                     tools:textSize="24sp" />
 
+
             </TableRow>
 
             <TableRow
@@ -115,7 +116,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="140dp"
                     tools:textSize="24sp" />
-
                 <TextView
                     android:id="@+id/birthday"
                     android:layout_width="wrap_content"
@@ -125,5 +125,43 @@
                     tools:layout_editor_absoluteY="20dp"
                     tools:textSize="24sp" />
             </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="46dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_organization"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="140dp"
+                    tools:textSize="24sp" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/orgs"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="46dp">
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="saveInfo"
+                    android:text="@string/butt_save" />
+            </TableRow>
         </TableLayout>
+    <TextView
+        android:id="@+id/text_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="200dp"
+        tools:textSize="24sp" />
 </ScrollView>

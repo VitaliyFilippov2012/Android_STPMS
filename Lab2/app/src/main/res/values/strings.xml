@@ -16,6 +16,11 @@
     <string name="text_role">Role</string>
     <string name="text_age">Age</string>
     <string name="text_manager">Manager</string>
-
+    <string name="text_organization">Organization</string>
+    <string-array name="orgs">
+        <item>BSU</item>
+        <item>BSTU</item>
+        <item>BSUIR</item>
+    </string-array>
 
 </resources>

@@ -1,19 +1,23 @@
 package filippovvitaliyleonidovich.bstu.fit.lab2.managerpage;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.sql.Time;
-import java.util.Date;
 
 import filippovvitaliyleonidovich.bstu.fit.lab2.MainActivity;
 import filippovvitaliyleonidovich.bstu.fit.lab2.R;
+import filippovvitaliyleonidovich.bstu.fit.lab2.WorkWithFile;
+import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Manager;
 
 public class ManagerMainInfo extends AppCompatActivity {
     String role;
@@ -55,5 +59,15 @@ public class ManagerMainInfo extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void saveInfo(View view){
+        Manager manager = new Manager(name,surname,Integer.parseInt(calculateAge(birthday)),addr,role,birthday);
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(manager);
+        WorkWithFile wf = new WorkWithFile(getFilesDir()+"Manager.txt");
+        if(!jsonString.equals("")){
+            wf.writeFile(jsonString);
+        }
     }
 }
