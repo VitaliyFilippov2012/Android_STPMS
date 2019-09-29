@@ -11,18 +11,18 @@ import filippovvitaliyleonidovich.bstu.fit.lab2.registration.reg_role;
 public class MainActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-    public void onClickSignIn(View view){
-        Intent intent = new Intent(this, Entry.class);
+    public void onClickSignIn(final View view){
+        final Intent intent = new Intent(this, Entry.class);
         startActivity(intent);
     }
 
-    public void onClickSignUp(View view){
-        Intent intent = new Intent(this, reg_role.class);
+    public void onClickSignUp(final View view){
+        final Intent intent = new Intent(this, reg_role.class);
         startActivity(intent);
     }
 
@@ -35,6 +35,4 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
     }
-
-
 }

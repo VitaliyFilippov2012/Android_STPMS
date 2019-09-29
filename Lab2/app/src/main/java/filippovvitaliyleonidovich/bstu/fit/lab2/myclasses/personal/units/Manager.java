@@ -13,27 +13,23 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.staff.Staff;
+import lombok.Getter;
 
+@Getter
 public class Manager extends Person implements  ISerializable {
+
     private String role;
+
     private String birthday;
+
     private String addr;
 
-    public Manager(String name,String surname,int age,String addr,String role, String birthday){
+    public Manager(final String name, final String surname, final int age, final String addr,
+                   final String role, final String birthday) {
         super(name,surname,age);
         this.addr = addr;
         this.birthday = birthday;
         this.role = role;
-    }
-
-    public String getRole(){
-        return role;
-    }
-    public String getAddr(){
-        return addr;
-    }
-    public String getBirthday(){
-        return birthday;
     }
 
     public Staff readFromFile(String fileName, Context context) {

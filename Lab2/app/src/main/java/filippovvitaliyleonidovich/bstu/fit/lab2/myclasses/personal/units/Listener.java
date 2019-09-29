@@ -7,22 +7,28 @@ import androidx.annotation.RequiresApi;
 public class Listener extends Person implements ISerializable {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Listener(String name, String surname, int age, int year,String org) {
-        super(name, surname, age, year,org);
+    public Listener(final String name, final String surname, final int age, final int year,
+                    final String org) {
+        super(name, surname, age, year, org);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Listener(String name, String surname, int age,String org) {
-        super(name, surname, age,org);
+    public Listener(final String name, final String surname, final int age, final String org) {
+        super(name, surname, age, org);
     }
 
     @Override
     public String toString() {
-        return "Listener{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", age=" + age +
-                '}';
+        try {
+            return "Listener{" +
+                    "name='" + getName() + '\'' +
+                    ", surname='" + getSurname() + '\'' +
+                    ", age=" + getAge() +
+                    '}';
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     @Override

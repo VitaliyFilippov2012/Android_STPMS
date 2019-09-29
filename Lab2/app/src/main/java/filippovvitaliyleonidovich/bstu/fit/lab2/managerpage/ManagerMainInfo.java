@@ -12,61 +12,76 @@ import com.google.gson.Gson;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import filippovvitaliyleonidovich.bstu.fit.lab2.MainActivity;
 import filippovvitaliyleonidovich.bstu.fit.lab2.R;
 import filippovvitaliyleonidovich.bstu.fit.lab2.WorkWithFile;
+import filippovvitaliyleonidovich.bstu.fit.lab2.enums.PersonInfo;
 import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Manager;
 
+import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.DATE_FORMAT;
+import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.MANAGER_TXT_NAME;
+import static java.util.Locale.getDefault;
+
 public class ManagerMainInfo extends AppCompatActivity {
-    String role;
-    String name;
-    String surname;
-    String addr;
-    String birthday;
+
+    private String role;
+
+    private String name;
+
+    private String surname;
+
+    private String addr;
+
+    private String birthday;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_main_info);
         setInfo(getIntent());
     }
 
-    private void setInfo(Intent intent){
-        role = intent.getStringExtra("role");
-        name = intent.getStringExtra("name");
-        surname = intent.getStringExtra("surname");
-        addr = intent.getStringExtra("addr");
-        birthday = intent.getStringExtra("birthday");
-        TextView textName = findViewById(R.id.name);
+    private void setInfo(final Intent intent){
+        role = intent.getStringExtra(PersonInfo.ROLE.name());
+        name = intent.getStringExtra(PersonInfo.NAME.name());
+        surname = intent.getStringExtra(PersonInfo.SURNAME.name());
+        addr = intent.getStringExtra(PersonInfo.ADDR.name());
+        birthday = intent.getStringExtra(PersonInfo.BIRTHDAY.name());
+
+        final TextView textName = findViewById(R.id.name);
         textName.setText(name);
-        TextView textSurname = findViewById(R.id.surname);
+
+        final TextView textSurname = findViewById(R.id.surname);
         textSurname.setText(surname);
-        TextView textBthd = findViewById(R.id.birthday);
-        textBthd.setText(calculateAge(birthday.substring(birthday.length()-4)));
-        TextView textAddr = findViewById(R.id.addr);
+
+        final TextView textBthd = findViewById(R.id.birthday);
+        textBthd.setText(calculateAge(birthday.substring(birthday.length() - 4)));
+
+        final TextView textAddr = findViewById(R.id.addr);
         textAddr.setText(addr);
     }
 
-    private String calculateAge(String year){
-        Date currentDate = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        String dateText = dateFormat.format(currentDate).substring(dateFormat.format(currentDate).length()-4);
-        String age = String.valueOf(Integer.valueOf(dateText) - Integer.valueOf(year));
-        return age;
+    private String calculateAge(final String year){
+        final Date currentDate = new Date();
+        final DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, getDefault());
+        final String dateText = dateFormat.format(currentDate).substring(dateFormat.format(currentDate).length() - 4);
+        return String.valueOf(Integer.valueOf(dateText) - Integer.valueOf(year));
     }
+
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    public void saveInfo(View view){
-        Manager manager = new Manager(name,surname,Integer.parseInt(calculateAge(birthday)),addr,role,birthday);
-        Gson gson = new Gson();
-        String jsonString = gson.toJson(manager);
-        WorkWithFile wf = new WorkWithFile(getFilesDir()+"Manager.txt");
-        if(!jsonString.equals("")){
+    public void saveInfo(final View view){
+        final Manager manager = new Manager(name, surname, Integer.parseInt(calculateAge(birthday)),
+                addr, role, birthday);
+        final Gson gson = new Gson();
+        final String jsonString = gson.toJson(manager);
+        final WorkWithFile wf = new WorkWithFile(getFilesDir() + MANAGER_TXT_NAME);
+        if (!jsonString.equals("")) {
             wf.writeFile(jsonString);
         }
     }

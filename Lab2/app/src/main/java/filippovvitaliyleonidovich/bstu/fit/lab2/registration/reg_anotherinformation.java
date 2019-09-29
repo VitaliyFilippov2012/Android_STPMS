@@ -13,53 +13,68 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import filippovvitaliyleonidovich.bstu.fit.lab2.R;
-import filippovvitaliyleonidovich.bstu.fit.lab2.WorkWithFile;
+import filippovvitaliyleonidovich.bstu.fit.lab2.enums.PersonInfo;
 import filippovvitaliyleonidovich.bstu.fit.lab2.managerpage.ManagerMainInfo;
 import filippovvitaliyleonidovich.bstu.fit.lab2.studentpage.studentInfo;
 
+import static java.lang.String.format;
+
 public class reg_anotherinformation extends AppCompatActivity {
-    String role;
-    String name;
-    String surname;
-    String birthday;
-    String addr;
-    DatePicker datePicker;
-    SharedPreferences mSettings;
-    boolean flag_save;
+
+    private String role;
+
+    private String name;
+
+    private String surname;
+
+    private String birthday;
+
+    private String addr;
+
+    private DatePicker datePicker;
+
+    private SharedPreferences settings;
+
+    private boolean flag_save;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_anotherinformation);
+
         flag_save = true;
-        mSettings = getSharedPreferences("param", Context.MODE_PRIVATE);
+        settings = getSharedPreferences("param", Context.MODE_PRIVATE);
         getStateFromSharePreferences();
-        Intent intent = getIntent();
-        role = intent.getStringExtra("role");
-        name = intent.getStringExtra("name");
-        surname = intent.getStringExtra("surname");
-        TextView text = findViewById(R.id.prev_info);
-        text.setText("Role: "+role +"\n"+"Name and surname: " + name + " " + surname);
+
+        final Intent intent = getIntent();
+        role = intent.getStringExtra(PersonInfo.ROLE.name());
+        name = intent.getStringExtra(PersonInfo.NAME.name());
+        surname = intent.getStringExtra(PersonInfo.SURNAME.name());
+
+        final TextView text = findViewById(R.id.prev_info);
+        text.setText(format("Role: %s\nName and surname: %s %s", role, name, surname));
         Log.d("reg_org", "create called");
     }
 
-    public void onClickSave(View view){
-        Intent intent;
+    public void onClickSave(final View view){
+        final Intent intent;
         if(role.equalsIgnoreCase("manager")){
             intent = new Intent(this, ManagerMainInfo.class);
         }
         else{
             intent = new Intent(this, studentInfo.class);
         }
-        datePicker = (DatePicker) findViewById(R.id.edit_birthday);
+        datePicker = findViewById(R.id.edit_birthday);
         birthday = datePicker.getDayOfMonth()+"."+datePicker.getMonth()+"."+datePicker.getYear();
-        intent.putExtra("role",role);
-        intent.putExtra("name", name);
-        intent.putExtra("surname", surname);
-        EditText ed_addr = findViewById(R.id.edit_addr);
+        intent.putExtra(PersonInfo.ROLE.name(),role);
+        intent.putExtra(PersonInfo.NAME.name(), name);
+        intent.putExtra(PersonInfo.SURNAME.name(), surname);
+
+        final EditText ed_addr = findViewById(R.id.edit_addr);
         addr = ed_addr.getText().toString();
-        if(!birthday.isEmpty() && !addr.isEmpty()) {
-            intent.putExtra("addr", addr);
-            intent.putExtra("birthday", birthday);
+        if (!birthday.isEmpty() && !addr.isEmpty()) {
+            intent.putExtra(PersonInfo.ADDR.name(), addr);
+            intent.putExtra(PersonInfo.BIRTHDAY.name(), birthday);
             startActivity(intent);
         }
         deleteEbuchiFile();
@@ -67,7 +82,7 @@ public class reg_anotherinformation extends AppCompatActivity {
     }
 
     private void deleteEbuchiFile(){
-        SharedPreferences.Editor editor = mSettings.edit();
+        final SharedPreferences.Editor editor = settings.edit();
         editor.clear();
         editor.apply();
     }
@@ -122,25 +137,25 @@ public class reg_anotherinformation extends AppCompatActivity {
 
     private void saveStateInSharePreferences(){
         if(flag_save) {
-            datePicker = (DatePicker) findViewById(R.id.edit_birthday);
+            datePicker = findViewById(R.id.edit_birthday);
             birthday = datePicker.getDayOfMonth()+"."+datePicker.getMonth()+"."+datePicker.getYear();
             EditText ed_addr = findViewById(R.id.edit_addr);
             addr = ed_addr.getText().toString();
-            SharedPreferences.Editor editor = mSettings.edit();
-            editor.putString("birthday", birthday);
-            editor.putString("addr", addr);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString(PersonInfo.BIRTHDAY.name(), birthday);
+            editor.putString(PersonInfo.ADDR.name(), addr);
             editor.apply();
         }
     }
 
     private void getStateFromSharePreferences(){
-        if(mSettings.contains("addr")) {
-            addr = mSettings.getString("addr", "");
+        if(settings.contains(PersonInfo.ADDR.name())) {
+            addr = settings.getString(PersonInfo.ADDR.name(), "");
             EditText ed_addr = findViewById(R.id.edit_addr);
             ed_addr.setText(addr);
         }
-        if(mSettings.contains("birthday")) {
-            birthday = mSettings.getString("birthday", "");
+        if(settings.contains(PersonInfo.BIRTHDAY.name())) {
+            birthday = settings.getString(PersonInfo.BIRTHDAY.name(), "");
             datePicker = (DatePicker) findViewById(R.id.edit_birthday);
             String[] parts = birthday.split("[.]");
             int year =Integer.valueOf(parts[2]) ;
@@ -148,14 +163,14 @@ public class reg_anotherinformation extends AppCompatActivity {
             int day = Integer.valueOf(parts[0]);
             datePicker.updateDate(year+1-1,month-1+1,day+1-1);
         }
-        if(mSettings.contains("role")) {
-            role = mSettings.getString("role", "");
+        if(settings.contains(PersonInfo.ROLE.name())) {
+            role = settings.getString(PersonInfo.ROLE.name(), "");
         }
-        if(mSettings.contains("name")) {
-            name = mSettings.getString("name", "");
+        if(settings.contains(PersonInfo.NAME.name())) {
+            name = settings.getString(PersonInfo.NAME.name(), "");
         }
-        if(mSettings.contains("surname")) {
-            surname = mSettings.getString("surname", "");
+        if(settings.contains(PersonInfo.SURNAME.name())) {
+            surname = settings.getString(PersonInfo.SURNAME.name(), "");
         }
     }
 

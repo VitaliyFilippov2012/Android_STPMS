@@ -6,29 +6,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.CalendarView;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import filippovvitaliyleonidovich.bstu.fit.lab2.Entry;
-import filippovvitaliyleonidovich.bstu.fit.lab2.MainActivity;
 import filippovvitaliyleonidovich.bstu.fit.lab2.R;
 
 public class reg_role extends AppCompatActivity {
 
-    String role;
-    SharedPreferences mSettings;
+    private String role;
+
+    private SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_role);
         Log.d("reg_role", "1");
-        mSettings = getSharedPreferences("param", Context.MODE_PRIVATE);
+        settings = getSharedPreferences("param", Context.MODE_PRIVATE);
         getStateFromSharePreferences();
     }
 
@@ -37,7 +33,7 @@ public class reg_role extends AppCompatActivity {
         RadioGroup radioGroup = findViewById(R.id.radio_group_role);
         RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
         role = radioButton.getText().toString();
-        intent.putExtra("role",role);
+        intent.putExtra(PersonInfo.ROLE.name(),role);
         startActivity(intent);
     }
 
@@ -86,17 +82,17 @@ public class reg_role extends AppCompatActivity {
     }
 
     private void saveStateInSharePreferences(){
-        SharedPreferences.Editor editor = mSettings.edit();
+        SharedPreferences.Editor editor = settings.edit();
         RadioGroup radioGroup = findViewById(R.id.radio_group_role);
         RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
         role = radioButton.getText().toString();
-        editor.putString("role",role);
+        editor.putString(PersonInfo.ROLE.name(),role);
         editor.apply();
     }
 
     private void getStateFromSharePreferences() {
-        if (mSettings.contains("role")) {
-            role = mSettings.getString("role", "");
+        if (settings.contains(PersonInfo.ROLE.name())) {
+            role = settings.getString(PersonInfo.ROLE.name(), "");
             RadioButton radioButton;
             if (role.equalsIgnoreCase("manager")) {
                 radioButton = findViewById(R.id.radioButton3);

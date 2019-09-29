@@ -11,29 +11,25 @@ import java.util.List;
 
 import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Person;
 import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Student;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Staff {
-    private ArrayList<Student> studList=new ArrayList<Student>();
 
-    public Staff() {
+    private List<Student> studList;
 
-
-    }
-
-    public Staff(ArrayList<Student> studList) {
+    public Staff(final ArrayList<Student> studList) {
         this.studList = studList;
     }
-    public List<Student> getStudlist(){return studList;}
-    public void setStudList(ArrayList<Student> studList)
+
+    public boolean add(final Person person)
     {
-        this.studList=studList;
-    }
-    public boolean add(Person item)
-    {
-        return studList.add((Student) item);
+        return studList.add((Student) person);
     }
 
-    public boolean remove (Person item)
+    public boolean remove (final Person item)
     {
         return studList.remove(item);
     }
@@ -41,36 +37,30 @@ public class Staff {
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public String toString() {
-        String result="";
+        StringBuilder result= new StringBuilder();
         for(Person person:studList)
         {
             try {
-                result+=(person.getName()+" "+person.getSurname())+"\n";
+                result.append(person.getName()).append(" ").append(person.getSurname()).append("\n");
             }
             catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        return result;
+        return result.toString();
     }
     public List<Student> getTopStud()
     {
-        Collections.sort(studList, new Comparator<Person>() {
-
-            @Override
-            public int compare(Person person, Person t1) {
-                if(person instanceof Student && t1 instanceof Student)
-                {
-                    Integer mark1=((Student) person).getMark();
-                    Integer mark2=((Student) t1).getMark();
-                    return mark1.compareTo(mark2);
-                }
-                return 0;
+        Collections.sort(studList, (Comparator<Person>) (person, t1) -> {
+            if(person instanceof Student && t1 instanceof Student)
+            {
+                Integer mark1=((Student) person).getMark();
+                Integer mark2=((Student) t1).getMark();
+                return mark1.compareTo(mark2);
             }
+            return 0;
         });
-        return (List<Student>) studList.subList(studList.size()-4,studList.size()-1);
+        return studList.subList(studList.size() - 4,studList.size() - 1);
     }
-
-
 }

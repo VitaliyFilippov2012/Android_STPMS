@@ -18,16 +18,24 @@ import java.util.Locale;
 import filippovvitaliyleonidovich.bstu.fit.lab2.MainActivity;
 import filippovvitaliyleonidovich.bstu.fit.lab2.R;
 import filippovvitaliyleonidovich.bstu.fit.lab2.WorkWithFile;
+import filippovvitaliyleonidovich.bstu.fit.lab2.enums.PersonInfo;
 import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Listener;
 import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Student;
 
 public class studentInfo extends AppCompatActivity {
-    String role;
-    String name;
-    String surname;
-    String addr;
-    String birthday;
-    String organization;
+
+    private String role;
+
+    private String name;
+
+    private String surname;
+
+    private String addr;
+
+    private String birthday;
+
+    private String organization;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +43,11 @@ public class studentInfo extends AppCompatActivity {
         setInfo(getIntent());
     }
     private void setInfo(Intent intent){
-        role = intent.getStringExtra("role");
-        name = intent.getStringExtra("name");
-        surname = intent.getStringExtra("surname");
-        addr = intent.getStringExtra("addr");
-        birthday = intent.getStringExtra("birthday");
+        role = intent.getStringExtra(PersonInfo.ROLE.name());
+        name = intent.getStringExtra(PersonInfo.NAME.name());
+        surname = intent.getStringExtra(PersonInfo.SURNAME.name());
+        addr = intent.getStringExtra(PersonInfo.ADDR.name());
+        birthday = intent.getStringExtra(PersonInfo.BIRTHDAY.name());
         TextView textRole = findViewById(R.id.role);
         textRole.setText(role);
         TextView textName = findViewById(R.id.name);
