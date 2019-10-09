@@ -84,4 +84,44 @@ public class WorkWithFile {
         }
         return "";
     }
+
+    public boolean saveAsJson(Object obj, File file){
+        Gson gson = new Gson();
+        String json = gson.toJson(obj);
+
+        try{
+            FileWriter fileWriter = new FileWriter(file, false);
+            fileWriter.append(json);
+            fileWriter.flush();
+            fileWriter.close();
+            return true;
+        } catch (IOException e) {
+            Log.d("WorkWithFile", "Ошибка записи в файл..");
+        }
+        return false;
+    }
+    public Object deserialize(File file, Type type){
+        Gson gson = new Gson();
+        String str = "";
+        StringBuilder text = new StringBuilder();
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            while ((str = br.readLine()) != null) {
+                text.append(str);
+                text.append('\n');
+            }
+
+            Object obj = gson.fromJson(String.valueOf(text), type);
+            return obj;
+
+        } catch (FileNotFoundException e) {
+            Log.d("WorkWithFile", "Ошибка чтения в файла..");
+        } catch (IOException e) {
+            Log.d("WorkWithFile", "Ошибка чтения в файла..");
+        }
+
+        return null;
+    }
 }

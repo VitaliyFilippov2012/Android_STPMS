@@ -14,53 +14,50 @@ import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Student
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 public class Staff {
+    private String nameStuff;
+    private ArrayList<Person> studlist;
 
-    private List<Student> studList;
-
-    public Staff(final ArrayList<Student> studList) {
-        this.studList = studList;
+    public Stuff (){
+        nameStuff = "";
+        studlist = new ArrayList<Person>();
+        Log.d("Stuff", "Create object Stuff");
+    }
+    public Stuff(String name,ArrayList<Person> list){
+        nameStuff = name;
+        studlist = list;
+        Log.d("Stuff", "Create object Stuff");
     }
 
-    public boolean add(final Person person)
-    {
-        return studList.add((Student) person);
+    public List<Person> getStudentsList(){
+        return studlist;
+    }
+    public void setStudentsList(ArrayList<Person> list){
+        Log.d("Stuff", "Set new list of persons");
+        studlist = list;
     }
 
-    public boolean remove (final Person item)
-    {
-        return studList.remove(item);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public String toString() {
-        StringBuilder result= new StringBuilder();
-        for(Person person:studList)
-        {
-            try {
-                result.append(person.getName()).append(" ").append(person.getSurname()).append("\n");
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
+    public boolean add (Person item) throws EduException {
+        try {
+//            if (item == null)
+//                throw new EduException();
+            Optional.of(item).orElseThrow(() -> new EduException());
+        }
+        catch (EduException ex) {
+            Log.d("", ex.getMessage());
+            return false;
         }
 
-        return result.toString();
+        Log.d("Stuff", "Added new item to stuff");
+        return studlist.add(item);
     }
-    public List<Student> getTopStud()
-    {
-        Collections.sort(studList, (Comparator<Person>) (person, t1) -> {
-            if(person instanceof Student && t1 instanceof Student)
-            {
-                Integer mark1=((Student) person).getMark();
-                Integer mark2=((Student) t1).getMark();
-                return mark1.compareTo(mark2);
-            }
-            return 0;
-        });
-        return studList.subList(studList.size() - 4,studList.size() - 1);
+    public boolean remove (Person item){
+        Log.d("Stuff", "Remove item from  Stuff");
+        return studlist.remove(item);
+    }
+
+    @Override
+    public String toString(){
+        return  "Name: " + nameStuff + "\nCount listeners: " + studlist.size();
     }
 }

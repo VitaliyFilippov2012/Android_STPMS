@@ -4,17 +4,26 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-public class Listener extends Person implements ISerializable {
+public class Listener extends Person{
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public Listener(final String name, final String surname, final int age, final int year,
-                    final String org) {
-        super(name, surname, age, year, org);
+    private Double reit;
+
+    public Listener(String name, Integer age, Organization org, Double reit) {
+        super(name, age, org);
+        this.reit = reit;
+        Log.d("Listener", "Create new object Listener");
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public Listener(final String name, final String surname, final int age, final String org) {
-        super(name, surname, age, org);
+    public int compare(Listener p1, Listener p2) {
+        return (int)(p1.getReit() - p2.getReit());
+    }
+
+    public Double getReit() {
+        return reit;
+    }
+    public void setReit(Double reit) {
+        this.reit = reit;
+        Log.d("Listener", "Set new value of Reit");
     }
 
     @Override
@@ -29,15 +38,5 @@ public class Listener extends Person implements ISerializable {
             e.printStackTrace();
         }
         return "";
-    }
-
-    @Override
-    public boolean saveInfo() {
-        return false;
-    }
-
-    @Override
-    public Person loadInfo() {
-        return null;
     }
 }

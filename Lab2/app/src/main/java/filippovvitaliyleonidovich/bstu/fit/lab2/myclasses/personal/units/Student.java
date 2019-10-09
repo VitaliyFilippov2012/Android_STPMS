@@ -10,27 +10,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class Student extends Person implements ISerializable {
 
-    private int mark;
+public class Student extends Person{
 
-    Organization organization;
+    private Double mark;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public Student(final String name, final String surname, final int age, final int year,
-                   final int mark, final String org) {
-        super(name, surname, age, year,org);
+    public Student(String name, Integer age, Organization org, Double mark) {
+        super(name, age, org);
         this.mark = mark;
+        Log.d("Student", "Create object Student");
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public Student(final String name, final String surname, final int age, final int mark,
-                   final String org) {
-        super(name, surname, age,org);
+    public Double getMark() {
+        return mark;
+    }
+    public void setMark(Double mark) {
         this.mark = mark;
+        Log.d("Student", "Set new value of mark");
+    }
+
+    public int compare(Student s1, Student s2) {
+        return (int)(s1.getMark() - s2.getMark());
     }
 
     @Override
@@ -46,15 +46,5 @@ public class Student extends Person implements ISerializable {
             e.printStackTrace();
         }
         return "";
-    }
-
-    @Override
-    public boolean saveInfo() {
-        return  true;
-    }
-
-    @Override
-    public Person loadInfo() {
-        return null;
     }
 }

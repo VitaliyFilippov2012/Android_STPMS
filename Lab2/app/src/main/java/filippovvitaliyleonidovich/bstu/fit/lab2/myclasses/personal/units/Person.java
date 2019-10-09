@@ -11,58 +11,53 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
 public abstract class Person implements Comparable<Person> {
-
     private String name;
-
+    private Organization organization;
+    private Integer yearOfBirthday;
     private Optional<String> surname;
 
-    private int age;
-
-    private int year;
-
-    private Organization org;
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public Person(final String name, final String surname, final int age, final int year,
-                  final String org) {
+    public Person(String name, Integer yearOfBirthday, Organization org){
         this.name = name;
-        this.surname=Optional.of(surname);
-        this.age = age;
-        this.year = year;
-        this.org = Organization.valueOf(org);
+        this.yearOfBirthday = yearOfBirthday;
+        this.organization = org;
+        Log.d("Person", "Create object Person");
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public Person(final String name, final String surname, final int age, final String org) {
+    public Person(String name, Integer yearOfBirthday){
         this.name = name;
-        this.surname = Optional.of(surname);
-        this.age = age;
-        this.org = Organization.valueOf(org);
+        this.yearOfBirthday = yearOfBirthday;
+        Log.d("Person", "Create object Person");
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public Person(final String name, final String surname, final int age) {
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
         this.name = name;
-        this.surname = Optional.of(surname);
-        this.age = age;
+        Log.d("Person", "Set new value of Name");
     }
 
-    @Override
-    public int compareTo(Person person) {
-        return 1;
+    public Organization getOrganization() {
+        return organization;
+    }
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+        Log.d("Person", "Set new value of Organization");
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    public Integer getYearOfBirthday() {
+        return yearOfBirthday;
+    }
+    public void setYear(Integer yearOfBirthday) {
+        this.yearOfBirthday = yearOfBirthday;
+        Log.d("Person", "Set new value of year birthday");
+    }
+
     public String getSurname() {
-        return surname.orElse("");
+        return surname;
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void setSurname(final String surname) {
-        this.surname = Optional.of( surname);
+    public void setSurname(String surname) {
+        this.surname = surname;
+        Log.d("Person", "Set new value of surame");
     }
 }
