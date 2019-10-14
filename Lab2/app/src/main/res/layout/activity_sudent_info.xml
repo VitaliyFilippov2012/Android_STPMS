@@ -1,167 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".studentpage.studentInfo">
 
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_role"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="20dp"
-                    tools:textSize="24sp" />
-                <TextView
-                    android:id="@+id/role"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="20dp"
-                    tools:textSize="24sp" />
-
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_name"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="50dp"
-                    tools:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="20dp"
-                    tools:textSize="24sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="123dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_surname"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="80dp"
-                    tools:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/surname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="20dp"
-                    tools:textSize="24sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_addr"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="110dp"
-                    tools:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/addr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="20dp"
-                    tools:textSize="24sp" />
-
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="46dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_age"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="140dp"
-                    tools:textSize="24sp" />
-                <TextView
-                    android:id="@+id/birthday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="20dp"
-                    tools:textSize="24sp" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="46dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_organization"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="140dp"
-                    tools:textSize="24sp" />
-
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/orgs"/>
-
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="46dp">
-
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="saveInfo"
-                    android:text="@string/butt_save" />
-            </TableRow>
-        </TableLayout>
-    <TextView
-        android:id="@+id/text_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="200dp"
-        tools:textSize="24sp" />
-</ScrollView>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_role"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="20dp"
+                        tools:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/role"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="20dp"
+                        tools:textSize="24sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="50dp"
+                        tools:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="20dp"
+                        tools:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="123dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_surname"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="80dp"
+                        tools:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/surname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="20dp"
+                        tools:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_addr"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="110dp"
+                        tools:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/addr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="20dp"
+                        tools:textSize="24sp" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_age"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="140dp"
+                        tools:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="20dp"
+                        tools:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp">
+
+                    <TextView
+                        android:id="@+id/text_compareType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text__rating"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="140dp"
+                        tools:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/compareType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="20dp"
+                        tools:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_organization"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="140dp"
+                        tools:textSize="24sp" />
+
+                    <Spinner
+                        android:id="@+id/org"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/orgs" />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_staff"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="140dp"
+                        tools:textSize="24sp" />
+
+                    <Spinner
+                        android:id="@+id/staff"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/staff" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp">
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="saveInfo"
+                        android:text="@string/butt_save" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/text_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                tools:layout_editor_absoluteY="200dp"
+                tools:textSize="24sp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

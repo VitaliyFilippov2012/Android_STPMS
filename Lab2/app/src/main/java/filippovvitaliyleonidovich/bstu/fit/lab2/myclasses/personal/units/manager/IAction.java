@@ -1,15 +1,11 @@
-package filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units;
+package filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.manager;
 
-import android.annotation.TargetApi;
-        import android.os.Build;
-        import android.util.Log;
-        import androidx.annotation.RequiresApi;
-
-        import java.io.File;
+import android.util.Log;
+import java.io.File;
 
 public interface IAction {
     void addStuff(String name, Integer maxStudents, Integer maxListeners,
-                  File students, File listeners);
+                  String students, String listeners);
     void addStuff(String name, Integer maxStudents, Integer maxListeners);
 
     default void sendMessage(String msg){

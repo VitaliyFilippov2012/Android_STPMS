@@ -1,33 +1,23 @@
 package filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.staff;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
+import android.util.Log;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
+import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.exception.EduException;
 import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Person;
-import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Student;
-import lombok.Getter;
-import lombok.Setter;
 
 public class Staff {
     private String nameStuff;
     private ArrayList<Person> studlist;
 
-    public Stuff (){
-        nameStuff = "";
-        studlist = new ArrayList<Person>();
+    public Staff (String name,ArrayList<Person> studlist){
+        this.nameStuff = name;
+        this.studlist = studlist;
         Log.d("Stuff", "Create object Stuff");
     }
-    public Stuff(String name,ArrayList<Person> list){
-        nameStuff = name;
-        studlist = list;
-        Log.d("Stuff", "Create object Stuff");
-    }
+
 
     public List<Person> getStudentsList(){
         return studlist;
@@ -37,10 +27,8 @@ public class Staff {
         studlist = list;
     }
 
-    public boolean add (Person item) throws EduException {
+    public boolean add(Person item) throws EduException {
         try {
-//            if (item == null)
-//                throw new EduException();
             Optional.of(item).orElseThrow(() -> new EduException());
         }
         catch (EduException ex) {
@@ -51,7 +39,7 @@ public class Staff {
         Log.d("Stuff", "Added new item to stuff");
         return studlist.add(item);
     }
-    public boolean remove (Person item){
+    public boolean remove(Person item){
         Log.d("Stuff", "Remove item from  Stuff");
         return studlist.remove(item);
     }

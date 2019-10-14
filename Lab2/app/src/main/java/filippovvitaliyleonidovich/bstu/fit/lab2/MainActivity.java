@@ -8,14 +8,35 @@ import android.view.View;
 
 import filippovvitaliyleonidovich.bstu.fit.lab2.registration.reg_role;
 
+import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.LISTENERS_TXT_NAME;
+import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.MANAGER_TXT_NAME;
+import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.STAFF_JAVA_TXT_NAME;
+import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.STAFF_NET_TXT_NANE;
+import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.STUDENTS_TXT_NAME;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /*WorkWithFile wfS = new WorkWithFile(getFilesDir()+STUDENTS_TXT_NAME);
+        createFile(wfS);
+        WorkWithFile wfL = new WorkWithFile(getFilesDir()+LISTENERS_TXT_NAME);
+        createFile(wfL);
+        WorkWithFile wfM = new WorkWithFile(getFilesDir()+MANAGER_TXT_NAME);
+        createFile(wfM);
+        WorkWithFile wfSJ = new WorkWithFile(getFilesDir()+STAFF_JAVA_TXT_NAME);
+        createFile(wfSJ);
+        WorkWithFile wfSN = new WorkWithFile(getFilesDir()+STAFF_NET_TXT_NANE);
+        createFile(wfSN);*/
     }
 
+    private void createFile(WorkWithFile wf){
+        if(!wf.checkFile()){
+            wf.createFile();
+        }
+    }
     public void onClickSignIn(final View view){
         final Intent intent = new Intent(this, Entry.class);
         startActivity(intent);

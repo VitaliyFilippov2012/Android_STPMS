@@ -1,6 +1,7 @@
 package filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -15,8 +16,8 @@ public class Student extends Person{
 
     private Double mark;
 
-    public Student(String name, Integer age, Organization org, Double mark) {
-        super(name, age, org);
+    public Student(String name,String surname, Integer yearOfbirthday,String addr, Organization org, Double mark,String nameStaff) {
+        super(name,surname,yearOfbirthday,addr,org,nameStaff);
         this.mark = mark;
         Log.d("Student", "Create object Student");
     }
@@ -29,22 +30,24 @@ public class Student extends Person{
         Log.d("Student", "Set new value of mark");
     }
 
-    public int compare(Student s1, Student s2) {
-        return (int)(s1.getMark() - s2.getMark());
-    }
-
     @Override
     public String toString() {
         try {
             return "Student{" +
-                    "mark=" + mark +
+                    "mark=" + getMark() +
                     ", name='" + getName() + '\'' +
                     ", surname='" + getSurname() + '\'' +
-                    ", age=" + getAge() +
+                    ", year of birthday=" + getYearOfBirthday() +
                     '}';
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
+    }
+
+    @Override
+    public int compareTo(Person p2) {
+        Student p22 = (Student)p2;
+        return (int)(this.getMark()- p22.getMark());
     }
 }

@@ -1,30 +1,32 @@
 package filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
+import android.util.Log;
 import java.util.Optional;
-
 import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.organization.Organization;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 public abstract class Person implements Comparable<Person> {
     private String name;
+    private String addr;
     private Organization organization;
     private Integer yearOfBirthday;
-    private Optional<String> surname;
+    private String surname;
+    private String nameStaff;
 
-    public Person(String name, Integer yearOfBirthday, Organization org){
+
+    public Person(String name,String surname, Integer yearOfBirthday, String addr, Organization org,String nameStaff){
         this.name = name;
+        this.surname = surname;
         this.yearOfBirthday = yearOfBirthday;
         this.organization = org;
+        this.addr = addr;
+        this.nameStaff = nameStaff;
+
         Log.d("Person", "Create object Person");
     }
-    public Person(String name, Integer yearOfBirthday){
+    public Person(String name,String surname, String addr, Integer yearOfBirthday){
         this.name = name;
+        this.surname = surname;
+        this.addr = addr;
         this.yearOfBirthday = yearOfBirthday;
         Log.d("Person", "Create object Person");
     }
@@ -35,6 +37,14 @@ public abstract class Person implements Comparable<Person> {
     public void setName(String name) {
         this.name = name;
         Log.d("Person", "Set new value of Name");
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+    public void setAddr(String addr) {
+        this.addr = addr;
+        Log.d("Person", "Set new value of Addr");
     }
 
     public Organization getOrganization() {
@@ -53,8 +63,7 @@ public abstract class Person implements Comparable<Person> {
         Log.d("Person", "Set new value of year birthday");
     }
 
-    public String getSurname() {
-        return surname;
+    public String getSurname() {return surname.toString();
     }
     public void setSurname(String surname) {
         this.surname = surname;

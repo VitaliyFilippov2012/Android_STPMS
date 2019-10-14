@@ -1,12 +1,25 @@
 package filippovvitaliyleonidovich.bstu.fit.lab2;
+import android.util.Log;
+
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
-public class WorkWithFile {
+import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Person;
+import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.manager.Manager;
+
+public class WorkWithFile{
     File file;
+
     public WorkWithFile(String fileName) {
         this.file = new File(fileName);
     }
@@ -85,43 +98,6 @@ public class WorkWithFile {
         return "";
     }
 
-    public boolean saveAsJson(Object obj, File file){
-        Gson gson = new Gson();
-        String json = gson.toJson(obj);
 
-        try{
-            FileWriter fileWriter = new FileWriter(file, false);
-            fileWriter.append(json);
-            fileWriter.flush();
-            fileWriter.close();
-            return true;
-        } catch (IOException e) {
-            Log.d("WorkWithFile", "Ошибка записи в файл..");
-        }
-        return false;
-    }
-    public Object deserialize(File file, Type type){
-        Gson gson = new Gson();
-        String str = "";
-        StringBuilder text = new StringBuilder();
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-
-            while ((str = br.readLine()) != null) {
-                text.append(str);
-                text.append('\n');
-            }
-
-            Object obj = gson.fromJson(String.valueOf(text), type);
-            return obj;
-
-        } catch (FileNotFoundException e) {
-            Log.d("WorkWithFile", "Ошибка чтения в файла..");
-        } catch (IOException e) {
-            Log.d("WorkWithFile", "Ошибка чтения в файла..");
-        }
-
-        return null;
-    }
 }

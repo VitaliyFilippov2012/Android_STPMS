@@ -40,7 +40,7 @@ public class reg_name extends AppCompatActivity {
         final Intent intent = new Intent(this, reg_anotherinformation.class);
         intent.putExtra(PersonInfo.ROLE.name(),role);
         final EditText ed_name = findViewById(R.id.editText_name);
-        final EditText ed_surname = findViewById(R.id.editText_surname);
+        final EditText ed_surname = findViewById(R.id.editText_organization);
         surname = ed_surname.getText().toString();
         name = ed_name.getText().toString();
         if(!name.isEmpty() && !surname.isEmpty()) {
@@ -96,7 +96,7 @@ public class reg_name extends AppCompatActivity {
     private void saveStateInSharePreferences(){
         SharedPreferences.Editor editor = mSettings.edit();
         EditText ed_name = findViewById(R.id.editText_name);
-        EditText ed_surname = findViewById(R.id.editText_surname);
+        EditText ed_surname = findViewById(R.id.editText_organization);
         surname = ed_surname.getText().toString();
         name = ed_name.getText().toString();
         editor.putString(PersonInfo.NAME.name(),name);
@@ -115,7 +115,7 @@ public class reg_name extends AppCompatActivity {
         }
         if(mSettings.contains(PersonInfo.SURNAME.name())) {
             surname = mSettings.getString(PersonInfo.SURNAME.name(), "");
-            EditText ed = findViewById(R.id.editText_surname);
+            EditText ed = findViewById(R.id.editText_organization);
             ed.setText(surname);
         }
     }

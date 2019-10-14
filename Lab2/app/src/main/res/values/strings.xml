@@ -17,10 +17,16 @@
     <string name="text_age">Age</string>
     <string name="text_manager">Manager</string>
     <string name="text_organization">Organization</string>
+    <string name="text_staff">Staff</string>
+    <string name="text_mark">Mark</string>
+    <string name="text__rating">Rating</string>
     <string-array name="orgs">
         <item>BSU</item>
         <item>BSTU</item>
         <item>BSUIR</item>
     </string-array>
-
+    <string-array name="staff">
+        <item>.Net</item>
+        <item>JAVA</item>
+    </string-array>
 </resources>

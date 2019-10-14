@@ -1,22 +1,20 @@
 package filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units;
 
-import android.os.Build;
 
-import androidx.annotation.RequiresApi;
+import android.util.Log;
+
+import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.organization.Organization;
 
 public class Listener extends Person{
 
     private Double reit;
 
-    public Listener(String name, Integer age, Organization org, Double reit) {
-        super(name, age, org);
+    public Listener(String name,String surname, Integer yearOfbirthday, String addr, Organization org, Double reit,String nameStaff) {
+        super(name,surname,yearOfbirthday,addr,org,nameStaff);
         this.reit = reit;
         Log.d("Listener", "Create new object Listener");
     }
 
-    public int compare(Listener p1, Listener p2) {
-        return (int)(p1.getReit() - p2.getReit());
-    }
 
     public Double getReit() {
         return reit;
@@ -32,11 +30,17 @@ public class Listener extends Person{
             return "Listener{" +
                     "name='" + getName() + '\'' +
                     ", surname='" + getSurname() + '\'' +
-                    ", age=" + getAge() +
+                    ", year of birthday=" + getYearOfBirthday() +
                     '}';
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
+    }
+
+    @Override
+    public int compareTo(Person p2) {
+        Listener p22 = (Listener)p2;
+        return (int)(this.getReit() - p22.getReit());
     }
 }

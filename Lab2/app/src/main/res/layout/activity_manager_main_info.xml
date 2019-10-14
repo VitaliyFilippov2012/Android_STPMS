@@ -119,7 +119,9 @@
                     tools:layout_editor_absoluteY="20dp"
                     tools:textSize="24sp" />
             </TableRow>
+
             <TableRow
+                android:id="@+id/hidden_row"
                 android:layout_width="match_parent"
                 android:layout_height="46dp">
 
@@ -127,9 +129,11 @@
                     android:id="@+id/button5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:onClick="saveInfo"
+                    android:text="@string/butt_save" />
 
 
             </TableRow>
         </TableLayout>
+
 </ScrollView>

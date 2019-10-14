@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public enum Organization {
 
     BSTU("BSTU","Belarusian state technological university",5,1000),
@@ -15,6 +14,7 @@ public enum Organization {
     private String fullName;
     private int rating;
     private int numberOfStudent;
-    public static Integer countPeople = 0;
 
+    Organization(String code, String fullName, int counStar, int numberOfStudent) {
+    }
 }

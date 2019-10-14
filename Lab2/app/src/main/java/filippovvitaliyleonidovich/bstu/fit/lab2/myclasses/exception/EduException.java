@@ -1,6 +1,8 @@
 package filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.exception;
 
-public class EdueException extends Exception {
+import android.util.Log;
+
+public class EduException extends Exception {
 
     public EduException(){
         Log.d("EduException", "Create exception :(");

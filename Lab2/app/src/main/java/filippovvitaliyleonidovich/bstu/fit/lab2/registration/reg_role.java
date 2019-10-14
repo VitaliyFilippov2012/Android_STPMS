@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import filippovvitaliyleonidovich.bstu.fit.lab2.R;
+import filippovvitaliyleonidovich.bstu.fit.lab2.enums.PersonInfo;
 
 public class reg_role extends AppCompatActivity {
 
