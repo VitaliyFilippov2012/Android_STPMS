@@ -23,7 +23,7 @@ public class Manager extends Person implements IAction{
     private ArrayList<Staff> staffs;
 
     public Manager(String name,String surname,String addr, Integer yearOfBirthday){
-        super(name,surname,addr,yearOfBirthday);
+        super("Manager",name,surname,addr,yearOfBirthday);
         staffs = new ArrayList<Staff>();
         Log.d("Manager", "Create object Manager");
     }

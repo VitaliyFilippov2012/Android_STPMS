@@ -17,7 +17,7 @@ public class Student extends Person{
     private Double mark;
 
     public Student(String name,String surname, Integer yearOfbirthday,String addr, Organization org, Double mark,String nameStaff) {
-        super(name,surname,yearOfbirthday,addr,org,nameStaff);
+        super("Student",name,surname,yearOfbirthday,addr,org,nameStaff);
         this.mark = mark;
         Log.d("Student", "Create object Student");
     }

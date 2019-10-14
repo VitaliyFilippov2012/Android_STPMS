@@ -31,7 +31,7 @@ public class reg_role extends AppCompatActivity {
 
     public void onClickNext(View view){
         Intent intent = new Intent(this, reg_name.class);
-        RadioGroup radioGroup = findViewById(R.id.radio_group_role);
+        RadioGroup radioGroup = findViewById(R.id.radio_group_staff);
         RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
         role = radioButton.getText().toString();
         intent.putExtra(PersonInfo.ROLE.name(),role);
@@ -84,7 +84,7 @@ public class reg_role extends AppCompatActivity {
 
     private void saveStateInSharePreferences(){
         SharedPreferences.Editor editor = settings.edit();
-        RadioGroup radioGroup = findViewById(R.id.radio_group_role);
+        RadioGroup radioGroup = findViewById(R.id.radio_group_staff);
         RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
         role = radioButton.getText().toString();
         editor.putString(PersonInfo.ROLE.name(),role);

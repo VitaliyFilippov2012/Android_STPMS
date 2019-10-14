@@ -10,7 +10,7 @@ public class Listener extends Person{
     private Double reit;
 
     public Listener(String name,String surname, Integer yearOfbirthday, String addr, Organization org, Double reit,String nameStaff) {
-        super(name,surname,yearOfbirthday,addr,org,nameStaff);
+        super("Listener",name,surname,yearOfbirthday,addr,org,nameStaff);
         this.reit = reit;
         Log.d("Listener", "Create new object Listener");
     }

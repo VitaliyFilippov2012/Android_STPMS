@@ -7,7 +7,7 @@
     tools:context=".registration.reg_role">
 
     <RadioGroup
-        android:id="@+id/radio_group_role"
+        android:id="@+id/radio_group_staff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"

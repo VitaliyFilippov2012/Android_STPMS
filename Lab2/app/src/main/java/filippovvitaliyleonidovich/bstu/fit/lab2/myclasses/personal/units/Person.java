@@ -10,10 +10,12 @@ public abstract class Person implements Comparable<Person> {
     private Organization organization;
     private Integer yearOfBirthday;
     private String surname;
+    private String role;
     private String nameStaff;
 
 
-    public Person(String name,String surname, Integer yearOfBirthday, String addr, Organization org,String nameStaff){
+    public Person(String role,String name,String surname, Integer yearOfBirthday, String addr, Organization org,String nameStaff){
+        this.role = role;
         this.name = name;
         this.surname = surname;
         this.yearOfBirthday = yearOfBirthday;
@@ -23,7 +25,8 @@ public abstract class Person implements Comparable<Person> {
 
         Log.d("Person", "Create object Person");
     }
-    public Person(String name,String surname, String addr, Integer yearOfBirthday){
+    public Person(String role,String name,String surname, String addr, Integer yearOfBirthday){
+        this.role = role;
         this.name = name;
         this.surname = surname;
         this.addr = addr;
@@ -38,6 +41,11 @@ public abstract class Person implements Comparable<Person> {
         this.name = name;
         Log.d("Person", "Set new value of Name");
     }
+
+    public String getRole() {
+        return role;
+    }
+
 
     public String getAddr() {
         return addr;

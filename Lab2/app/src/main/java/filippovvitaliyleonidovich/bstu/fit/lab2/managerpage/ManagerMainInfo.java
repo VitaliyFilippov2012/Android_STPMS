@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.gson.Gson;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,18 +18,14 @@ import java.util.Date;
 
 import filippovvitaliyleonidovich.bstu.fit.lab2.MainActivity;
 import filippovvitaliyleonidovich.bstu.fit.lab2.R;
+import filippovvitaliyleonidovich.bstu.fit.lab2.StaffInfo;
 import filippovvitaliyleonidovich.bstu.fit.lab2.WorkWithFile;
 import filippovvitaliyleonidovich.bstu.fit.lab2.WorkWithFileJSON;
 import filippovvitaliyleonidovich.bstu.fit.lab2.enums.PersonInfo;
-import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Person;
 import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.manager.Manager;
 
 import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.DATE_FORMAT;
-import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.LISTENERS_TXT_NAME;
 import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.MANAGER_TXT_NAME;
-import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.STAFF_JAVA_TXT_NAME;
-import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.STAFF_NET_TXT_NANE;
-import static filippovvitaliyleonidovich.bstu.fit.lab2.constants.Basic.STUDENTS_TXT_NAME;
 import static java.util.Locale.getDefault;
 
 public class ManagerMainInfo extends AppCompatActivity {
@@ -101,5 +97,27 @@ public class ManagerMainInfo extends AppCompatActivity {
         wfJson.saveAsJson(manager);
         Log.d("main_manager","Save manager");
         onBackPressed();
+    }
+
+    public void onClickGenerateFromFile(View view){
+
+    }
+
+    public void onClickRandomGenerate(View view){
+
+    }
+
+    public void onClickGoToStaff(View view){
+        RadioGroup radioGroup = findViewById(R.id.radio_group_staff);
+        RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
+        String staff = radioButton.getText().toString();
+        Button button = findViewById(R.id.but_gotostaff);
+        button.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, StaffInfo.class);
+        intent.putExtra("Staff",staff);
+        startActivity(intent);
+        button.setVisibility(View.INVISIBLE);
+        radioButton.setChecked(false);
+
     }
 }
