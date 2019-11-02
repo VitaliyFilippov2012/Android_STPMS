@@ -10,10 +10,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.manager.Manager;
 
 public class WorkWithFileJSON<T>{
 
@@ -35,19 +35,24 @@ public class WorkWithFileJSON<T>{
                 text.append(str);
                 text.append('\n');
             }
-            Log.d("entry",String.valueOf(text));
+            Log.d("WorkWithFile",String.valueOf(text));
             String[] findStrings = String.valueOf(text).split("\n");
             ArrayList<T> findObj = new ArrayList<T>();
+            String[] array = new String[2];
             for (String s: findStrings) {
-                findObj.add((T)gson.fromJson(String.valueOf(s), type));
+                if(!s.isEmpty()){
+                    findObj.add((T)gson.fromJson(String.valueOf(s), type));
+                    Log.d("MyApp","Вынули из файла: "+s);
+                }
+
             }
 
             return findObj;
 
         } catch (FileNotFoundException e) {
-            Log.d("WorkWithFile", "Ошибка чтения в файла..");
+            Log.d("MyApp", "Ошибка чтения из файла..");
         } catch (IOException e) {
-            Log.d("WorkWithFile", "Ошибка чтения в файла..");
+            Log.d("MyApp", "Ошибка чтения из файла..");
         }
         return null;
     }
@@ -55,6 +60,7 @@ public class WorkWithFileJSON<T>{
     public boolean saveAsJson(T obj){
         Gson gson = new Gson();
         String json = gson.toJson(obj);
+        Log.d("MyApp","Записали в файл: "+json);
         try{
             FileWriter fileWriter = new FileWriter(wf.file, true);
             fileWriter.append(json);
@@ -63,7 +69,7 @@ public class WorkWithFileJSON<T>{
             fileWriter.close();
             return true;
         } catch (IOException e) {
-            Log.d("WorkWithFile", "Ошибка записи в файл..");
+            Log.d("MyApp", "Ошибка записи в файл..");
         }
         return false;
     }

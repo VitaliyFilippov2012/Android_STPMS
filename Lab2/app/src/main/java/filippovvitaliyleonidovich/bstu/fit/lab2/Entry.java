@@ -36,7 +36,6 @@ public class Entry extends AppCompatActivity {
 
         final EditText ed_surname = findViewById(R.id.editText_surname);
         final String surname = ed_surname.getText().toString();
-        Log.d("entry", "ButtDown");
 
         final WorkWithFile wf = new WorkWithFile(getFilesDir() + MANAGER_TXT_NAME);
         WorkWithFileJSON<Manager> wfJson = new WorkWithFileJSON<Manager>(wf);
@@ -49,7 +48,6 @@ public class Entry extends AppCompatActivity {
             intent.putExtra(PersonInfo.ADDR.name(), m.getAddr());
             intent.putExtra(PersonInfo.BIRTHDAY.name(), String.valueOf(m.getYearOfBirthday()));
             intent.putExtra("flag",false);
-            Log.d("entry","start");
             startActivity(intent);
        });
     }

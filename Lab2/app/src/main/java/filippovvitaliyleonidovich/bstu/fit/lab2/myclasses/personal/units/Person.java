@@ -12,19 +12,18 @@ public abstract class Person implements Comparable<Person> {
     private String surname;
     private String role;
     private String nameStaff;
+    private String phone;
+    private String email;
+    private String messanger;
 
 
     public Person(String role,String name,String surname, Integer yearOfBirthday, String addr, Organization org,String nameStaff){
-        this.role = role;
-        this.name = name;
-        this.surname = surname;
-        this.yearOfBirthday = yearOfBirthday;
+        this(role,name,surname,addr,yearOfBirthday);
         this.organization = org;
         this.addr = addr;
         this.nameStaff = nameStaff;
-
-        Log.d("Person", "Create object Person");
     }
+
     public Person(String role,String name,String surname, String addr, Integer yearOfBirthday){
         this.role = role;
         this.name = name;
@@ -32,6 +31,13 @@ public abstract class Person implements Comparable<Person> {
         this.addr = addr;
         this.yearOfBirthday = yearOfBirthday;
         Log.d("Person", "Create object Person");
+    }
+
+    public Person(String role,String name,String surname, String addr, Integer yearOfBirthday, Organization org,String nameStaff,String phone, String email, String messanger){
+        this(role,name,surname,yearOfBirthday,addr,org,nameStaff);
+        this.email = email;
+        this.messanger = messanger;
+        this.phone = phone;
     }
 
     public String getName() {
@@ -46,6 +52,29 @@ public abstract class Person implements Comparable<Person> {
         return role;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+        Log.d("Person", "Set new value of Phone");
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+        Log.d("Person", "Set new value of email");
+    }
+
+    public String getMessanger() {
+        return messanger;
+    }
+    public void setMessanger(String messanger) {
+        this.messanger = messanger;
+        Log.d("Person", "Set new value of Messanger");
+    }
 
     public String getAddr() {
         return addr;
@@ -76,5 +105,13 @@ public abstract class Person implements Comparable<Person> {
     public void setSurname(String surname) {
         this.surname = surname;
         Log.d("Person", "Set new value of surame");
+    }
+
+    public String getStaff() {return nameStaff.toString();
+    }
+
+    @Override
+    public String toString(){
+        return "Staff " + this.getStaff() +"\n" + this.getRole() + "\nName: "+this.getName()+" Surname: " + this.getSurname();
     }
 }

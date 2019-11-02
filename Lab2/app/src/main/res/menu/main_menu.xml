@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/new_p"
+        android:orderInCategory="1"
+        android:title="@string/text_new" />
+    <item
+        android:id="@+id/sort"
+        android:orderInCategory="3"
+        android:title="@string/text_sort_by_rating" />
+    <item
+        android:id="@+id/find"
+        android:orderInCategory="2"
+        android:title="@string/text_find" />
+    <item
+        android:id="@+id/top"
+        android:orderInCategory="4"
+        android:title="@string/top_3" />
+</menu>

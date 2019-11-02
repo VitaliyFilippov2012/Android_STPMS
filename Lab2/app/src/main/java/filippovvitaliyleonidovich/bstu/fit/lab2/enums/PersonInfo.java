@@ -5,5 +5,10 @@ public enum PersonInfo {
     SURNAME,
     ROLE,
     ADDR,
-    BIRTHDAY
+    BIRTHDAY,
+    Email,
+    Phone,
+    Messanger,
+    Organization,
+    Staff
 }

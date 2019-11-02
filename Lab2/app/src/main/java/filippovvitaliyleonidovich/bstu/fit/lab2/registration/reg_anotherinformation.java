@@ -26,6 +26,9 @@ public class reg_anotherinformation extends AppCompatActivity {
     private String surname;
     private String birthday;
     private String addr;
+    private String phone;
+    private String email;
+    private String messanger;
     private DatePicker datePicker;
     private SharedPreferences settings;
     private boolean flag_save;
@@ -43,10 +46,12 @@ public class reg_anotherinformation extends AppCompatActivity {
         role = intent.getStringExtra(PersonInfo.ROLE.name());
         name = intent.getStringExtra(PersonInfo.NAME.name());
         surname = intent.getStringExtra(PersonInfo.SURNAME.name());
+        phone = intent.getStringExtra(PersonInfo.Phone.name());
+        messanger = intent.getStringExtra(PersonInfo.Messanger.name());
+        email = intent.getStringExtra(PersonInfo.Email.name());
 
         final TextView text = findViewById(R.id.prev_info);
         text.setText(format("Role: %s\nName and surname: %s %s", role, name, surname));
-        Log.d("reg_org", "create called");
     }
 
     public void onClickSave(final View view){
@@ -62,12 +67,15 @@ public class reg_anotherinformation extends AppCompatActivity {
         intent.putExtra(PersonInfo.ROLE.name(),role);
         intent.putExtra(PersonInfo.NAME.name(), name);
         intent.putExtra(PersonInfo.SURNAME.name(), surname);
-
+        intent.putExtra(PersonInfo.Email.name(), email);
+        intent.putExtra(PersonInfo.Phone.name(), phone);
+        intent.putExtra(PersonInfo.Messanger.name(), messanger);
+        intent.putExtra("flag", "0");
         final EditText ed_addr = findViewById(R.id.edit_addr);
         addr = ed_addr.getText().toString();
         if (!birthday.isEmpty() && !addr.isEmpty()) {
             intent.putExtra(PersonInfo.ADDR.name(), addr);
-            intent.putExtra(PersonInfo.BIRTHDAY.name(), birthday);
+            intent.putExtra(PersonInfo.BIRTHDAY.name(), birthday.substring(birthday.length()-4));
             startActivity(intent);
         }
         deleteFileSet();
@@ -88,41 +96,34 @@ public class reg_anotherinformation extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        Log.d("reg_org", "savestate called");
     }
 
     @Override
     protected void onStop(){
         super.onStop();
         saveStateInSharePreferences();
-        Log.d("reg_org", "stop called");
-
     }
 
     @Override
     protected  void onStart(){
         super.onStart();
-        Log.d("reg_org", "start called");
     }
 
     @Override
     protected void onPause(){
         super.onPause();
         saveStateInSharePreferences();
-        Log.d("reg_org", "pause called");
     }
 
     @Override
     protected void onResume(){
         super.onResume();
         getStateFromSharePreferences();
-        Log.d("reg_org", "resume called");
     }
 
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        Log.d("reg_org", "destroy called");
     }
 
     private void saveStateInSharePreferences(){
@@ -143,7 +144,6 @@ public class reg_anotherinformation extends AppCompatActivity {
             addr = settings.getString(PersonInfo.ADDR.name(), "");
             EditText ed_addr = findViewById(R.id.edit_addr);
             ed_addr.setText(addr);
-            Log.d("reg_org",addr);
         }
         if(settings.contains(PersonInfo.BIRTHDAY.name())) {
             birthday = settings.getString(PersonInfo.BIRTHDAY.name(), "");
@@ -152,25 +152,17 @@ public class reg_anotherinformation extends AppCompatActivity {
             int year =Integer.valueOf(parts[2]) ;
             int month = Integer.valueOf(parts[1]);
             int day = Integer.valueOf(parts[0]);
-            Log.d("reg_org", year+""+month+""+day);
-
             datePicker.updateDate(year+1-1,month-1+1,day+1-1);
         }
         if(settings.contains(PersonInfo.ROLE.name())) {
 
             role = settings.getString(PersonInfo.ROLE.name(), "");
-            Log.d("reg_org",role);
-
         }
         if(settings.contains(PersonInfo.NAME.name())) {
             name = settings.getString(PersonInfo.NAME.name(), "");
-            Log.d("reg_org",name);
-
         }
         if(settings.contains(PersonInfo.SURNAME.name())) {
             surname = settings.getString(PersonInfo.SURNAME.name(), "");
-            Log.d("reg_org",surname);
-
         }
     }
 

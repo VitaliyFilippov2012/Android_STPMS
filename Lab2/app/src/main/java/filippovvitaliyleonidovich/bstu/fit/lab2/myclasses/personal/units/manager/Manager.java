@@ -35,66 +35,13 @@ public class Manager extends Person implements IAction{
     @Override
     public void addStuff(String name, Integer maxStudents, Integer maxListeners,
                          String students, String listeners){
-        WorkWithFile wFListener = new WorkWithFile(listeners);
-        WorkWithFile wFStudent = new WorkWithFile(students);
-        WorkWithFileJSON<Listener> wfJsonListener = new WorkWithFileJSON<Listener>(wFListener);
-        WorkWithFileJSON<Student> wfJsonStudent = new WorkWithFileJSON<Student>(wFStudent);
 
-        ArrayList<Listener> listenerArrayList = wfJsonListener.deserialize(new TypeToken<Listener>(){}.getType());
-        ArrayList<Student> studentArrayList = wfJsonStudent.deserialize(new TypeToken<Student>(){}.getType());
-
-
-        listenerArrayList.sort(Comparator.comparing(obj -> obj.getReit()));
-        listenerArrayList.sort(Comparator.comparing(obj -> obj.getName()));
-        studentArrayList.sort(Comparator.comparing(obj -> obj.getMark()));
-        studentArrayList.sort(Comparator.comparing(obj -> obj.getName()));
-
-        ArrayList<Person> persons = new ArrayList<Person>();
-        for (int i = 0; i< maxStudents; i++)
-            persons.add((Person)studentArrayList.get(i));
-
-        for (int i = 0; i< maxListeners; i++)
-            persons.add((Person)listenerArrayList.get(i));
-
-        Staff stuff = new Staff(name, persons);
-        staffs.add(stuff);
     }
 
 
     @Override
     public void addStuff(String name, Integer maxStudents, Integer maxListeners){
-        // список персон
-        ArrayList<Listener> listenerArrayList = new ArrayList<Listener>(Arrays.asList(
-                new Listener("Вадим", "Усачев",22,"г.Минск ул.Белорусская 21-705", Organization.BSTU, 2.7,"JAVA"),
-                new Listener("Алекссей", "Хваткин", 27,"г.Минск ул.Белорусская 21-305", Organization.BSTU, 3.5,"JAVA"),
-                new Listener("Сергей", "Еремнеко", 21,"г.Минск ул.Белорусская 21-205", Organization.BSUIR, 4.1,".NET"),
-                new Listener("Вадим", "Сергеев", 23,"г.Минск ул.Белорусская 21-715", Organization.BSU, 1.9,"JAVA"),
-                new Listener("Володя", "Усачев", 35,"г.Минск ул.Белорусская 21-405", Organization.BSUIR, 4.,".NET")
-        ));
 
-        ArrayList<Student> studentArrayList = new ArrayList<Student>(Arrays.asList(
-                new Student("Филипп", "Колотилов", 18,"г.Минск ул.Белорусская 21-705", Organization.BSUIR, 7.8,"JAVA"),
-                new Student("Филипп", "Ковтик", 17,"г.Минск ул.Белорусская 21-705", Organization.BSUIR, 6.5,".NET"),
-                new Student("Андрей", "Лютик", 19,"г.Минск ул.Белорусская 21-705", Organization.BSTU, 8.,"JAVA"),
-                new Student("Артем", "Филатов", 17,"г.Минск ул.Белорусская 21-705", Organization.BSTU, 6.,".NET"),
-                new Student("Екатерина", "Кулакова", 18,"г.Минск ул.Белорусская 21-705", Organization.BSTU, 7.1,".NET")
-        ));
-
-        // производим сортировку при помощи компаратора
-        listenerArrayList.sort(Comparator.comparing(obj -> obj.getReit()));
-        listenerArrayList.sort(Comparator.comparing(obj -> obj.getName()));
-        studentArrayList.sort(Comparator.comparing(obj -> obj.getMark()));
-        studentArrayList.sort(Comparator.comparing(obj -> obj.getName()));
-
-        ArrayList<Person> persons = new ArrayList<Person>();
-        for (int i = 0; i< maxStudents; i++)
-            persons.add((Person)studentArrayList.get(i));
-
-        for (int i = 0; i< maxListeners; i++)
-            persons.add((Person)listenerArrayList.get(i));
-
-        Staff stuff = new Staff(name, persons);
-        staffs.add(stuff);
     }
 
     @Override

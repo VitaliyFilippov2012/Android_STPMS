@@ -142,6 +142,7 @@
         </TableLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/hidden_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -184,32 +185,6 @@
 
             </RadioGroup>
 
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="100dp"
-                android:onClick="onClickGenerateFromFile"
-                android:text="@string/text_generate_from_file"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button3"
-                app:layout_constraintTop_toBottomOf="@+id/radio_group_staff" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="30dp"
-                android:onClick="onClickRandomGenerate"
-                android:text="@string/text_random_generate"
-                app:layout_constraintEnd_toStartOf="@+id/button2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radio_group_staff" />
 
             <Button
                 android:id="@+id/but_gotostaff"

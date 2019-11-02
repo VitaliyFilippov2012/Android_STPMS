@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab №2</string>
+    <string name="app_name">My app</string>
     <string name="butt_signin">Sign In</string>
     <string name="butt_signup">Sign Up</string>
     <string name="butt_entry">Entry</string>
@@ -28,6 +28,16 @@
     <string name="text_staff_info">Staff info</string>
     <string name="text_top_people">Top 3</string>
     <string name="text_sort_by_rating">Sort by rating</string>
+    <string name="text_phone">Phone</string>
+    <string name="text_email">Email</string>
+    <string name="text_messangers">Messangers</string>
+    <string name="text_clickme">ClickMe</string>
+    <string name="text_new">New</string>
+    <string name="text_find">Find</string>
+    <string name="top_3">Top 3</string>
+    <string name="input_here">Input here:</string>
+    <string name="delete">Delete</string>
+    <string name="copy">Copy</string>
     <string-array name="orgs">
         <item>BSU</item>
         <item>BSTU</item>

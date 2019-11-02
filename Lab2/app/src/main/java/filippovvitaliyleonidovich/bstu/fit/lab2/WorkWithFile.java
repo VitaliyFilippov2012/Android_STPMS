@@ -1,21 +1,10 @@
 package filippovvitaliyleonidovich.bstu.fit.lab2;
 import android.util.Log;
-
-import com.google.gson.Gson;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-
-import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.Person;
-import filippovvitaliyleonidovich.bstu.fit.lab2.myclasses.personal.units.manager.Manager;
 
 public class WorkWithFile{
     File file;
@@ -26,7 +15,11 @@ public class WorkWithFile{
 
     public boolean createFile() {
         try {
+            if (checkFile()) {
+                deleteFile();
+            }
             file.createNewFile();
+            Log.d("MyApp", "Создали файл: " + file.getName());
         }
         catch (IOException e) {
             return false;
@@ -36,8 +29,11 @@ public class WorkWithFile{
 
     public boolean deleteFile() {
         file.delete();
+        Log.d("MyApp","Удалили файл: "+file.getName());
+
         return !checkFile();
     }
+
 
     public boolean checkFile(){
         if(file.exists()) {

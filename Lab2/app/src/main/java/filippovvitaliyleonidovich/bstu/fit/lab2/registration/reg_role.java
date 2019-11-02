@@ -24,7 +24,6 @@ public class reg_role extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_role);
-        Log.d("reg_role", "1");
         settings = getSharedPreferences("param", Context.MODE_PRIVATE);
         getStateFromSharePreferences();
     }
@@ -45,41 +44,34 @@ public class reg_role extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        Log.d("reg_role", "savestate called");
     }
 
     @Override
     protected void onStop(){
         super.onStop();
         saveStateInSharePreferences();
-        Log.d("reg_role", "stop called");
-
     }
 
     @Override
     protected  void onStart(){
         super.onStart();
-        Log.d("reg_role", "start called");
     }
 
     @Override
     protected void onPause(){
         super.onPause();
         saveStateInSharePreferences();
-        Log.d("reg_role", "pause called");
     }
 
     @Override
     protected void onResume(){
         super.onResume();
         getStateFromSharePreferences();
-        Log.d("reg_role", "resume called");
     }
 
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        Log.d("reg_role", "destroy called");
     }
 
     private void saveStateInSharePreferences(){

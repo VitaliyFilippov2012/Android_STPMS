@@ -6,6 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".registration.reg_name">
 
+    <EditText
+        android:id="@+id/editText_messangers"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints="true"
+        android:ems="10"
+        android:hint="@string/text_messangers"
+        android:inputType="textUri"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_email" />
+
+    <EditText
+        android:id="@+id/editText_email"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints="true"
+        android:ems="10"
+        android:hint="@string/text_email"
+        android:inputType="textPostalAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_phone" />
+
+    <EditText
+        android:id="@+id/editText_phone"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints="true"
+        android:ems="10"
+        android:hint="@string/text_phone"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name" />
+
     <TextView
         android:id="@+id/prev_info"
         android:layout_width="350dp"
@@ -27,12 +67,11 @@
         android:hint="@string/text_name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_organization" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_surname" />
 
     <EditText
-        android:id="@+id/editText_organization"
+        android:id="@+id/editText_surname"
         android:layout_width="350dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
